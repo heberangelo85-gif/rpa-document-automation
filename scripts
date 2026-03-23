@@ -1,0 +1,39 @@
+// RPA Document Processing - Data Extraction Layer (Sanitized)
+
+SET vQVDname = 'rpa_document_processing';
+
+TRACE _______ START DATA EXTRACTION $(vQVDname) _______;
+
+$(vQVDname):
+
+SQL
+SELECT
+      Q.IdQueue
+    , D.InsertTimestamp
+    , D.DocumentId
+    , D.DocumentType
+    , D.DocumentPath
+    , D.DocumentData
+    , Q.StartTime
+    , Q.EndTime
+    , Q.Status
+    , Q.Notes
+    , Q.RetryCount
+    , D.UploadStatus
+    , D.FileCount
+    , D.BoardApprovalFlag
+FROM [RPA_SCHEMA].[DocumentQueue] Q
+RIGHT JOIN [RPA_SCHEMA].[DocumentData] D 
+    ON Q.DocumentId = D.DocumentId
+
+ORDER BY Q.IdQueue DESC;
+
+LET vRowCount = NoOfRows('$(vQVDname)');
+
+TRACE TOTAL ROWS LOADED = $(vRowCount);
+
+STORE $(vQVDname) INTO [lib://DATA_LAYER/$(vQVDname).qvd] (QVD);
+
+DROP TABLE $(vQVDname);
+
+DISCONNECT;
