@@ -1,3 +1,5 @@
+-- Note: Table and column names have been anonymized for confidentiality
+
 -- =============================================
 -- Project: Card Transaction Monitoring
 -- Description: Data extraction for credit card transactions
