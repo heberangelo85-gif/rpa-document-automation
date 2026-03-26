@@ -91,6 +91,16 @@ An RPA solution was implemented using **Microsoft Power Automate**, based on str
 * SQL (data validation and support)
 
 ---
+## 💾 Data Extraction
+The dataset was built using SQL queries combining transaction and event data.
+Key features:
+- Integration of multiple data sources  
+- Event-based transaction enrichment  
+- Near real-time data processing logic  
+
+See the full query in:  
+`scripts/data_extraction.sql`
+
 
 ## 📸 Dashboard Example
 
